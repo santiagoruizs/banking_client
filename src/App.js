@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import Login from './pages/Login';
+import Transfer from './pages/Transfer';
+import Widthdraw from './pages/Widthdraw';
+import Signup from './pages/Signup';
+import Deposit from './pages/Deposit'
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, useNavigate } from 'react-router-dom';
+import Root from './pages/Root';
+import Home from './pages/Home';
+
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path="/" element={<Root />}>
+        <Route path="/account" element={<Home />} >
+          <Route path="transfer" element={<Transfer />}/>
+          <Route path="deposit" element={<Deposit />}/>
+          <Route path="widthdraw" element={<Widthdraw />}/>
+        </Route>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/signup" element={<Signup />}/>
+       
+      </Route>
+))
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router} /> 
   );
 }
 
